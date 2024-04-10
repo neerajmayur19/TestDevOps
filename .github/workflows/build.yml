@@ -1,9 +1,6 @@
 name: Node.js App Workflow
 
-on:
-  push:
-    branches:
-      - main  # Adjust branch name as needed
+on: [push]
 
 jobs:
   build:
@@ -16,7 +13,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '14'  # Adjust Node.js version as needed
+        node-version: '18'  # Adjust Node.js version as needed
 
     - name: Install Dependencies
       run: npm install

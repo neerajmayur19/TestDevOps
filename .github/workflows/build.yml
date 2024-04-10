@@ -1,6 +1,9 @@
 name: Node.js App Workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -13,9 +16,16 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'  # Adjust Node.js version as needed
+        node-version: '18'
+
+    - name: Install Dependencies
+      run: npm install
 
     - name: Run Node.js Application
-      run: node app.js  # Adjust file name as needed
-
-
+      run: node app.js &
+    
+    - name: Wait for Server to Start
+      run: sleep 5  # Adjust sleep time as needed for your application to start
+    
+    - name: Test Application
+      run: curl http://localhost:3000

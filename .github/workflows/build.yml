@@ -15,9 +15,6 @@ jobs:
       with:
         node-version: '18'  # Adjust Node.js version as needed
 
-    - name: Install Dependencies
-      run: npm install
-
     - name: Run Node.js Application
       run: node app.js  # Adjust file name as needed
 

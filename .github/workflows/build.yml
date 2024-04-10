@@ -1,18 +1,27 @@
-name: Action Workflow
+name: Node.js App Workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # Adjust branch name as needed
 
 jobs:
-    run-github-actions:
-        runs-on: windows-latest
-        steps:
-        - name: Simple Javascript Action
-          id: hello
-          uses: actions/hello-world-javascript-action@v1
-          with:
-            who-to-greet: Neeraj
+  build:
+    runs-on: ubuntu-latest
 
-        - name: Get the Output Time
-          run: echo "${{ steps.hello.outputs.time}}"
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # Adjust Node.js version as needed
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Node.js Application
+      run: node app.js  # Adjust file name as needed
 
 
